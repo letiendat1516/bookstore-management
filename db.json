@@ -49,16 +49,6 @@
       "quantity": 8,
       "image": "images/placeholder-book.jpg",
       "description": "Cẩm nang viết code sạch và dễ bảo trì"
-    },
-    {
-      "title": "Test Book",
-      "author": "Test Author",
-      "category": "Fantasy",
-      "price": 100000,
-      "quantity": 5,
-      "image": "images/placeholder-book.jpg",
-      "description": "Test book for testing",
-      "id": 6
     }
   ],
   "categories": [

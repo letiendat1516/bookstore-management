@@ -162,11 +162,11 @@ class BooksManager {
                             </p>
                         ` : ''}
                         <div class="d-flex gap-2">
-                            <button class="btn btn-sm btn-outline-primary flex-fill" onclick="editBook(${book.id})">
+                            <button class="btn btn-sm btn-outline-primary flex-fill" data-book-id="${book.id}" onclick="editBook(this.dataset.bookId)">
                                 <i class="fas fa-edit me-1"></i>
                                 Sửa
                             </button>
-                            <button class="btn btn-sm btn-outline-danger" onclick="deleteBook(${book.id}, '${book.title}')">
+                            <button class="btn btn-sm btn-outline-danger" data-book-id="${book.id}" data-book-title="${book.title}" onclick="deleteBook(this.dataset.bookId, this.dataset.bookTitle)">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -336,7 +336,7 @@ function openBookModal(book = null) {
 }
 
 function editBook(id) {
-    const book = window.booksManager.books.find(b => b.id === id);
+    const book = window.booksManager.books.find(b => b.id == id);
     if (book) {
         window.booksManager.openBookModal(book);
     }

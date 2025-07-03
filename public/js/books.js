@@ -162,11 +162,11 @@ class BooksManager {
                             </p>
                         ` : ''}
                         <div class="d-flex gap-2">
-                            <button class="btn btn-sm btn-outline-primary flex-fill" onclick="editBook(${book.id})">
+                            <button class="btn btn-sm btn-outline-primary flex-fill" data-book-id="${book.id}" onclick="editBook(this.dataset.bookId)">
                                 <i class="fas fa-edit me-1"></i>
                                 Sửa
                             </button>
-                            <button class="btn btn-sm btn-outline-danger" onclick="deleteBook(${book.id}, '${book.title}')">
+                            <button class="btn btn-sm btn-outline-danger" data-book-id="${book.id}" data-book-title="${book.title}" onclick="deleteBook(this.dataset.bookId, this.dataset.bookTitle)">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -182,34 +182,66 @@ class BooksManager {
     }
 
     openBookModal(book = null) {
-        const modal = new bootstrap.Modal(document.getElementById('bookModal'));
+        const modalElement = document.getElementById('bookModal');
+        if (!modalElement) {
+            console.error('Modal element not found');
+            return;
+        }
+
+        // Try to use Bootstrap 5 modal API
+        let modal;
+        try {
+            modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+        } catch (error) {
+            console.error('Bootstrap modal error:', error);
+            // Fallback: try to trigger via data attributes
+            modalElement.classList.add('show');
+            modalElement.style.display = 'block';
+            document.body.classList.add('modal-open');
+        }
+
         const title = document.getElementById('bookModalTitle');
         const form = document.getElementById('bookForm');
 
         // Reset form
-        form.reset();
-        validation.clearValidation(form);
+        if (form) {
+            form.reset();
+            if (window.validation) {
+                validation.clearValidation(form);
+            }
+        }
 
         if (book) {
             // Edit mode
             this.currentEditId = book.id;
-            title.textContent = 'Chỉnh sửa sách';
+            if (title) title.textContent = 'Chỉnh sửa sách';
             
             // Populate form
-            document.getElementById('bookTitle').value = book.title;
-            document.getElementById('bookAuthor').value = book.author;
-            document.getElementById('bookCategory').value = book.category;
-            document.getElementById('bookPrice').value = book.price;
-            document.getElementById('bookQuantity').value = book.quantity;
-            document.getElementById('bookImage').value = book.image || '';
-            document.getElementById('bookDescription').value = book.description || '';
+            const titleField = document.getElementById('bookTitle');
+            const authorField = document.getElementById('bookAuthor');
+            const categoryField = document.getElementById('bookCategory');
+            const priceField = document.getElementById('bookPrice');
+            const quantityField = document.getElementById('bookQuantity');
+            const imageField = document.getElementById('bookImage');
+            const descriptionField = document.getElementById('bookDescription');
+
+            if (titleField) titleField.value = book.title;
+            if (authorField) authorField.value = book.author;
+            if (categoryField) categoryField.value = book.category;
+            if (priceField) priceField.value = book.price;
+            if (quantityField) quantityField.value = book.quantity;
+            if (imageField) imageField.value = book.image || '';
+            if (descriptionField) descriptionField.value = book.description || '';
         } else {
             // Add mode
             this.currentEditId = null;
-            title.textContent = 'Thêm sách mới';
+            if (title) title.textContent = 'Thêm sách mới';
         }
 
-        modal.show();
+        // Show the modal
+        if (modal && modal.show) {
+            modal.show();
+        }
     }
 
     async handleBookSubmit(e) {
@@ -336,13 +368,26 @@ function openBookModal(book = null) {
 }
 
 function editBook(id) {
-    const book = window.booksManager.books.find(b => b.id === id);
+    console.log('editBook called with id:', id);
+    if (!window.booksManager) {
+        console.error('booksManager not available');
+        return;
+    }
+    const book = window.booksManager.books.find(b => b.id == id);
+    console.log('Found book:', book);
     if (book) {
         window.booksManager.openBookModal(book);
+    } else {
+        console.error('Book not found with id:', id);
     }
 }
 
 function deleteBook(id, title) {
+    console.log('deleteBook called with id:', id, 'title:', title);
+    if (!window.booksManager) {
+        console.error('booksManager not available');
+        return;
+    }
     window.booksManager.deleteBook(id, title);
 }
 

@@ -1,6 +1,6 @@
 // Common functions and utilities for Bookstore Management System
 
-const API_BASE_URL = 'http://localhost:9999';
+const API_BASE_URL = 'http://localhost:3001';
 
 // Utility functions
 const utils = {

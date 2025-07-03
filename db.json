@@ -1,0 +1,148 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Harry Potter và Hòn đá Phù thủy",
+      "author": "J.K. Rowling",
+      "category": "Fantasy",
+      "price": 250000,
+      "quantity": 15,
+      "image": "images/placeholder-book.jpg",
+      "description": "Cuốn sách đầu tiên trong series Harry Potter nổi tiếng"
+    },
+    {
+      "id": 2,
+      "title": "Dế Mèn phiêu lưu ký",
+      "author": "Tô Hoài",
+      "category": "Thiếu nhi",
+      "price": 120000,
+      "quantity": 20,
+      "image": "images/placeholder-book.jpg",
+      "description": "Tác phẩm kinh điển của văn học thiếu nhi Việt Nam"
+    },
+    {
+      "id": 3,
+      "title": "Đắc nhân tâm",
+      "author": "Dale Carnegie",
+      "category": "Kỹ năng sống",
+      "price": 180000,
+      "quantity": 25,
+      "image": "images/placeholder-book.jpg",
+      "description": "Cuốn sách kinh điển về nghệ thuật giao tiếp và ứng xử"
+    },
+    {
+      "id": 4,
+      "title": "Sapiens: Lược sử loài người",
+      "author": "Yuval Noah Harari",
+      "category": "Lịch sử",
+      "price": 320000,
+      "quantity": 10,
+      "image": "images/placeholder-book.jpg",
+      "description": "Cuốn sách đình đám về lịch sử tiến hóa của loài người"
+    },
+    {
+      "id": 5,
+      "title": "Clean Code",
+      "author": "Robert C. Martin",
+      "category": "Công nghệ",
+      "price": 450000,
+      "quantity": 8,
+      "image": "images/placeholder-book.jpg",
+      "description": "Cẩm nang viết code sạch và dễ bảo trì"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Fantasy",
+      "description": "Sách thuộc thể loại giả tưởng, phép thuật"
+    },
+    {
+      "id": 2,
+      "name": "Thiếu nhi",
+      "description": "Sách dành cho trẻ em và thiếu niên"
+    },
+    {
+      "id": 3,
+      "name": "Kỹ năng sống",
+      "description": "Sách hướng dẫn kỹ năng và phát triển bản thân"
+    },
+    {
+      "id": 4,
+      "name": "Lịch sử",
+      "description": "Sách về lịch sử và văn hóa"
+    },
+    {
+      "id": 5,
+      "name": "Công nghệ",
+      "description": "Sách về lập trình và công nghệ thông tin"
+    },
+    {
+      "id": 6,
+      "name": "Kinh doanh",
+      "description": "Sách về quản trị và kinh doanh"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "customerName": "Nguyễn Văn An",
+      "customerPhone": "0912345678",
+      "items": [
+        {
+          "bookId": 1,
+          "title": "Harry Potter và Hòn đá Phù thủy",
+          "price": 250000,
+          "quantity": 2
+        },
+        {
+          "bookId": 3,
+          "title": "Đắc nhân tâm",
+          "price": 180000,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 680000,
+      "date": "2024-01-15T10:30:00.000Z",
+      "status": "completed"
+    },
+    {
+      "id": 2,
+      "customerName": "Trần Thị Bình",
+      "customerPhone": "0987654321",
+      "items": [
+        {
+          "bookId": 2,
+          "title": "Dế Mèn phiêu lưu ký",
+          "price": 120000,
+          "quantity": 3
+        }
+      ],
+      "totalAmount": 360000,
+      "date": "2024-01-16T14:20:00.000Z",
+      "status": "completed"
+    },
+    {
+      "id": 3,
+      "customerName": "Lê Minh Cường",
+      "customerPhone": "0901234567",
+      "items": [
+        {
+          "bookId": 4,
+          "title": "Sapiens: Lược sử loài người",
+          "price": 320000,
+          "quantity": 1
+        },
+        {
+          "bookId": 5,
+          "title": "Clean Code",
+          "price": 450000,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 770000,
+      "date": "2024-01-17T09:15:00.000Z",
+      "status": "pending"
+    }
+  ]
+}
